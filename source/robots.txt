@@ -10,5 +10,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://smacdown.gebilaowu.cn/sitemap.xml
-Sitemap: http://smacdown.gebilaowu.cn/baidusitemap.xml
+Sitemap: http://blog.smackdown.gebilaowu.cn/sitemap.xml
+Sitemap: http://blog.smackdown.gebilaowu.cn/baidusitemap.xml
