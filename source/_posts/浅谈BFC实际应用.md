@@ -2,6 +2,7 @@ title: 浅谈BFC的实际应用
 date: 2015-08-8 12:19:21
 tags: CSS
 categories: 浅谈BFC实际应用
+keywords: BFC, CSS
 ---
 BFC在开发非常重要，每个人对其理解都有不同。本文章主要讨论BFC的一些实际应用。
 <!--more-->

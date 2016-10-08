@@ -2,6 +2,7 @@ title: JavaScript优化之工具
 date: 2015-08-6 04:33:15
 tags: 高性能JavaScript学习笔记
 categories: 高性能JavaScript-10
+keywords: 高性能JavaScript
 ---
 **第十章 Tools 工具 **
 ===

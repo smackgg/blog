@@ -2,18 +2,24 @@
 ===
 2015-07-28 17:28:18
 ---
-很早就搭出的博客，一直没有时间折腾，大三的时间实在是太紧了。这段时间终于腾出点时间，能让我好好的收拾一下自己的博客。将主题优化了一下，本主题基于 [Yilia](https://github.com/litten/hexo-theme-yilia)主题做的优化。后续我会把我优化后的主题传到[我的github](https://github.com/winnerweb)上。**可以点击进入[我的个人博客](https://winnerweb.github.io)查看效果**。肯定还有很多不足之处和bug需要更改，希望大家评论告诉我，看到一定回复。
+很早就搭出的博客，一直没有时间折腾，大三的时间实在是太紧了。这段时间终于腾出点时间，能让我好好的收拾一下自己的博客。将主题优化了一下，本主题基于 [Yilia](https://github.com/litten/hexo-theme-yilia)主题做的优化。后续我会把我优化后的主题传到[我的github](https://github.com/winnerweb/hexo-theme-smackdown)上。**可以点击进入[我的个人博客](https://winnerweb.github.io/blog)查看效果**。肯定还有很多不足之处和bug需要更改，希望大家评论告诉我，看到一定回复。
 
 **体验手机版的可以扫下面的二维码。**
 
-![二维码](http://7xkj1z.com1.z0.glb.clouddn.com/二维码.png "GitHub Mark")
+![二维码](http://7xkj1z.com1.z0.glb.clouddn.com/blog%E4%BA%8C%E7%BB%B4%E7%A0%81.png "GitHub Mark")
 
 ---
->- Yilia 是为 hexo 2.4+制作的主题。 
+** 本主题的特点
 >- 响应式开发
 >- 崇尚极致的性能。
 >- 主题能很好的兼容移动端。
->- **因为我优化的主题（包括一些颜色和背景）可能比较让人眼花缭乱，所以增加了阅读模式，关闭背景图片，方便阅读。（有时因为图片加载问题可能会出现花屏现象，可以Ctrl+A来解决）**
+ - 在 yilia 的基础上做了SEO优化。
+
+
+
+
+
+
 
 
 以下内容转自Yilia原主题的README
