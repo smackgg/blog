@@ -51,6 +51,13 @@ duoshuo: winnerweb
 #是否开启云标签
 tagcloud: true
 
+#是否开启文章阅读量
+leancloud_visitors:
+  enable: true
+  app_id: K1qAIJa0JgKeGUnrlq0G526F-gzGzoHsz
+  app_key: n4XwRe0iBOxWpBaYJ7HNWPA3
+
+
 
 #是否开启友情链接
 #不开启——
@@ -67,8 +74,3 @@ aboutme: false
 swift_search:
   enable: true
 
-# add post views
-leancloud_visitors:
-  enable: true
-  app_id: K1qAIJa0JgKeGUnrlq0G526F-gzGzoHsz
-  app_key: n4XwRe0iBOxWpBaYJ7HNWPA3
