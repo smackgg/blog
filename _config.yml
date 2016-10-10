@@ -71,6 +71,11 @@ sitemap:
 baidusitemap:
   path: baidusitemap.xml
 
+# add post views
+leancloud_visitors:
+  enable: true
+  app_id: K1qAIJa0JgKeGUnrlq0G526F-gzGzoHsz
+  app_key: n4XwRe0iBOxWpBaYJ7HNWPA3
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
