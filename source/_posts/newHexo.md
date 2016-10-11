@@ -2,6 +2,8 @@ title: 搭建你的Hexo博客
 date: 2015-05-25 13:13:45
 tags: hexo
 categories: hexo
+top: 100
+
 ---
  早就想在github上搭建属于自己的博客了，一直没有腾出时间，Jekyll也觉得一般，前一阵一个[朋友(他的博客有干货)](http://phunsukewonder.cn/)推荐hexo，看了看文档，很不错，也决定用hexo搭建一个自己的博客，下面是我摘自网络的教程，想搭建自己博客的朋友可以自己动手试一试。
 <!--more-->
