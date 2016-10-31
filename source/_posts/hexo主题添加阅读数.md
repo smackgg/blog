@@ -44,10 +44,8 @@ hexo是一个静态的博客，所以想要添加评论或者统计，就需要�
   ![leancloud](http://7xkj1z.com1.z0.glb.clouddn.com/hexo%E9%98%85%E8%AF%BB%E6%95%B0-5.jpeg)
 </div>
 
-5. 在hexo-theme-smackdown主题的```_config.yml```文件中找到如下代码
-  <div align="center">
-  ![leancloud](http://7xkj1z.com1.z0.glb.clouddn.com/hexo%E9%98%85%E8%AF%BB%E6%95%B0-7.jpeg)
-  </div>
+5. 在hexo-theme-smackdown主题的_config.yml文件中找到如下代码
+![leancloud](http://7xkj1z.com1.z0.glb.clouddn.com/hexo%E9%98%85%E8%AF%BB%E6%95%B0-7.jpeg)
 
 6. 将enable设置成true,将刚才复制的app_id和app_key分别粘贴到相应位置。
   ```md
