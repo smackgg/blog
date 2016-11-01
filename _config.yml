@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: hexo-theme-smackdown
+theme: smackdown
 
 # hexo sitemap网站地图
 sitemap:
@@ -71,19 +71,13 @@ sitemap:
 baidusitemap:
   path: baidusitemap.xml
 
-# add post views
-leancloud_visitors:
-  enable: true
-  app_id: K1qAIJa0JgKeGUnrlq0G526F-gzGzoHsz
-  app_key: n4XwRe0iBOxWpBaYJ7HNWPA3
-
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
 - type: git
-  repo: https://github.com/winnerweb/blog.git
+  repo: git@github.com:winnerweb/blog.git
   branch: gh-pages
 - type: git
-  repo: https://git.coding.net/winnerweb/blog.git
+  repo: git@git.coding.net:winnerweb/blog.git
   branch: gh-pages
 
