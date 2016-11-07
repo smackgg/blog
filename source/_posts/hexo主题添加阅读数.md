@@ -3,7 +3,7 @@ title: 为hexo-theme-smackdown主题添加阅读数
 date: 2016-10-31 14:23:47
 tags: hexo
 categories: hexo
-keyword: hexo,theme,smackdown,hexo主题,统计,阅读数
+keywords: hexo,theme,smackdown,hexo主题,统计,阅读数
 ---
 为你的hexo博客每篇文章添加阅读数。
 <!--more-->
