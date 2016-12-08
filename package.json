@@ -6,7 +6,8 @@
     "version": "3.2.2"
   },
   "scripts": {
-    "deploy": "hexo clean && rm db.json && hexo g && gulp && hexo d && node pushtobaidu.js"
+    "push": "git pull origin master && git add -A && git commit -m 'update' && git push origin master",
+    "deploy": "hexo clean && rm db.json && hexo g && gulp && hexo d && node pushtobaidu.js && npm run push"
   },
   "dependencies": {
     "gulp": "^3.9.1",
