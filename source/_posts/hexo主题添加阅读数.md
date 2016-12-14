@@ -13,7 +13,7 @@ keywords: hexo,theme,smackdown,hexo主题,统计,阅读数
 </div>
 
 ---
-**如果你使用的是[hexo-theme-smackdown](https://github.com/winnerweb/hexo-theme-smackdown)主题，那你继续往下看本文章。
+**如果你使用的是[hexo-theme-smackdown](https://github.com/smackgg/hexo-theme-smackdown)主题，那你继续往下看本文章。
 如果你使用的是其它主题并想为你自己的主题添加文章阅读数，请参考[这篇文章](http://www.aluenkinglee.com/2016/06/30/hexo-add-post-hits/)。**
 
 
