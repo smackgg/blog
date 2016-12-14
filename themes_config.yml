@@ -36,7 +36,7 @@ open_in_new: false
 baidu_tongji: true
 google_analytics: true
 
-# favicon: /favicon.png
+favicon: http://7xkj1z.com1.z0.glb.clouddn.com/favicon.ico
 
 #你的头像url
 avatar: http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg

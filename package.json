@@ -6,8 +6,10 @@
     "version": "3.2.2"
   },
   "scripts": {
-    "push": "git pull origin master && git add -A && git commit -m 'update' && git push origin master",
-    "deploy": "hexo clean && rm db.json && hexo g && gulp && hexo d && node pushtobaidu.js && npm run push"
+    "deploy": "npm run hexo-deploy && npm run copy-config",
+    "hexo-deploy": "hexo clean && rm db.json && hexo g && gulp && hexo d && node pushtobaidu.js",
+    "copy-config": "rm themes_config.yml && cp themes/smackdown/_config.yml themes_config.yml",
+    "push": "git pull origin master && git add -A && git commit -m 'update' && git push origin master"
   },
   "dependencies": {
     "gulp": "^3.9.1",
