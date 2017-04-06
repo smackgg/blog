@@ -4,9 +4,9 @@
 
 # Site
 title: Smackdown's blog
-subtitle: 世界那么大、我想去看看
+subtitle: 扎心了，老铁。
 description:
-author: Smackdown
+author: Smackgg
 language: zh-CN
 timezone:
 
@@ -75,9 +75,8 @@ baidusitemap:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
 - type: git
-  repo: git@github.com:winnerweb/blog.git
+  repo: git@github.com:smackgg/blog.git
   branch: gh-pages
 - type: git
   repo: git@git.coding.net:winnerweb/blog.git
   branch: gh-pages
-
