@@ -71,6 +71,6 @@ aboutme: false
 #开启——
 # aboutme:
 
-swift_search:
+baidu_search:
   enable: true
 
