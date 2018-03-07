@@ -6,10 +6,10 @@ menu:
 
 # SubNav
 subnav:
-  # github: "#"
-  # zhihu: "#"
-  # mail: "#"
-  # qq: "#"
+  github: "https://github.com/smackgg"
+  zhihu: "https://www.zhihu.com/people/xu-yan-35-49/activities"
+  mail: "xysmackdown@gmail.com"
+  qq: "http://shang.qq.com/email/stop/email_stop.html?qq=1260977477"
   # weibo: "#"
   # rss: "#"
   #douban: "#"
@@ -39,7 +39,7 @@ google_analytics: true
 favicon: http://7xkj1z.com1.z0.glb.clouddn.com/favicon.ico
 
 #你的头像url
-avatar: http://7xkj1z.com1.z0.glb.clouddn.com/head.jpg
+avatar: http://7xkj1z.com1.z0.glb.clouddn.com/head-1.gif
 
 #是否开启分享
 share: true
@@ -71,6 +71,5 @@ aboutme: false
 #开启——
 # aboutme:
 
-baidu_search:
+swift_search:
   enable: true
-
