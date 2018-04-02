@@ -3,16 +3,22 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Smackdown's blog
-subtitle: 扎心了，老铁。
-description:
+title: Smackgg
+subtitle: 你好，兄dei
+description: 伪全栈
 author: Smackgg
 language: zh-CN
 timezone:
 
+#是否开启文章阅读量
+leancloud_visitors:
+  enable: true
+  app_id: K1qAIJa0JgKeGUnrlq0G526F-gzGzoHsz
+  app_key: n4XwRe0iBOxWpBaYJ7HNWPA3
+
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://blog.smackdown.gebilaowu.cn
+url: http://blog.smackgg.cn
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -40,7 +46,7 @@ future: true
 highlight:
   enable: true
   line_number: true
-  auto_detect: false
+  auto_detect: true
   tab_replace:
 
 # Category & Tag
@@ -63,7 +69,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: smackdown
+theme: maupassant-hexo
+# theme: smackdown
 
 # hexo sitemap网站地图
 sitemap:
@@ -77,6 +84,6 @@ deploy:
 - type: git
   repo: git@github.com:smackgg/blog.git
   branch: gh-pages
-- type: git
-  repo: git@git.coding.net:winnerweb/blog.git
-  branch: gh-pages
+# - type: git
+#   repo: git@git.coding.net:winnerweb/blog.git
+#   branch: gh-pages
