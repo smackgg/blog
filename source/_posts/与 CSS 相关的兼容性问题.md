@@ -62,7 +62,7 @@ keywords: CSS, CSS兼容性, 前端兼容性, 兼容性
 > - 5、IE6/IE7/IE8(Q)不支持':focus'伪类。
 >>解决办法：使用 JavaScript 绑定 onfocus onblur 事件模仿 ':focus'效果；
 或者使用 Whatever:hover。
-> - 6、IE6/IE7/IE8(Q)不支持 ':before' 和 ':after' 伪元素	
+> - 6、IE6/IE7/IE8(Q)不支持 ':before' 和 ':after' 伪元素
 >>解决办法：使用 JavaScript 判断 IE6 IE7 IE8(Q) 并在其中通过脚本实现 ':before' 及 ':after' 伪元素的效果；使用 jQuery 的插件 Pseudo Plugin，该组件利用 IE 特有的 CSS 行为（behavior）及 CSS 表达式来模拟 ':before' 及 ':after' 伪元素的效果。
 
 ---
@@ -112,7 +112,7 @@ IE8(S)中，块级元素无法通过设置'display:inherit'、特性值，显式
 > - 2、Chrome Safari ，在 WebKit 内核的浏览器中，当元素满足三个条件时，宽度计算不符合规范：
 元素的兄弟元素是浮动元素；元素的 'width' 特性值为 'auto'，'overflow' 特性值不是 'visible'；元素设置了与浮动同方向的 'margin' 值(如：当 'float:left' 时，设置 'margin-left' 值，当 'float:right' 时，设置 'margin-right')。
 >>解决办法：
->>- 为该创建了 BFC 的元素设置一个明确的宽度; 
+>>- 为该创建了 BFC 的元素设置一个明确的宽度;
 >>- 如果 'margin' 值不小于浮动元素的 margin box 的宽时，去掉'overflow:hidden'。
 > - 3、Firefox 中 'display:table' 的元素的外边距不会与包含块的外边距折叠(也就是margin塌陷)。
 

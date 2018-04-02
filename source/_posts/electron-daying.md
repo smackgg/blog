@@ -6,9 +6,7 @@ categories: Electron
 keywords: Electron, react, boilerplate, 前端, 桌面应用, Mac, Windows
 ---
 
-此项目是一个信息聚合类的桌面应用, mac windows linux多平台兼容, 演示效果如下。
-![](http://7xkj1z.com1.z0.glb.clouddn.com/daying_display1.gif)
-
+此项目是一个信息聚合类的桌面应用, mac windows linux多平台兼容。
 <!--more-->
 
 # Electron DaYing (大鹰)
@@ -97,12 +95,12 @@ keywords: Electron, react, boilerplate, 前端, 桌面应用, Mac, Windows
 ```
 
 
-路由所对应的页面都在 ```src/renderer/routes/``` 文件夹下。组成这两个界面的 component 都在 ```src/renderer/components/``` 文件夹中，包括 Loading 组件，主界面右边的 Webview 组件等等。其中会用到一些 Electron的 API，看下文档就知道是干什么的了。这一部分其实没什么好说的，都是 React 的那些东西，直接看源码吧。
+路由所对应的页面都在 `src/renderer/routes/` 文件夹下。组成这两个界面的 component 都在 `src/renderer/components/` 文件夹中，包括 Loading 组件，主界面右边的 Webview 组件等等。其中会用到一些 Electron的 API，看下文档就知道是干什么的了。这一部分其实没什么好说的，都是 React 的那些东西，直接看源码吧。
 ### 数据&事件。
 
-dva 这一套架构的核心事件触发以及数据绑定是在 ```src/renderer/models``` 中，经过 dva 的封装之后，reducer，redux，saga清晰明了，其中的 effects 其实就是saga，不了解 redux、saga 的自行去看文档。。。
+dva 这一套架构的核心事件触发以及数据绑定是在 `src/renderer/models` 中，经过 dva 的封装之后，reducer，redux，saga清晰明了，其中的 effects 其实就是saga，不了解 redux、saga 的自行去看文档。。。
 
-本项目的 ```src/renderer/models/itemList.js``` 文件，主要是请求获取后台数据进行处理，以及将数据储存在 Storage 中，包括用户定制的订阅源列表，配置页面所有订阅源列表等等。简单说一下 ipcRenderer，因为在配置界面更新订阅源之后，需要刷新主界面，两个窗口之间的数据通信就需要 Electron 的 main 端进行数据通信，就是 ipcMain 和 ipcRenderer。
+本项目的 `src/renderer/models/itemList.js` 文件，主要是请求获取后台数据进行处理，以及将数据储存在 Storage 中，包括用户定制的订阅源列表，配置页面所有订阅源列表等等。简单说一下 ipcRenderer，因为在配置界面更新订阅源之后，需要刷新主界面，两个窗口之间的数据通信就需要 Electron 的 main 端进行数据通信，就是 ipcMain 和 ipcRenderer。
 
 
 ```javascript
@@ -152,7 +150,7 @@ effects 中的内容主要是处理两个请求，其实就是利用saga来处�
 
 ### 遇到的一些坑
 
-在 Windows 上运行```npm run build```的时候会报NODE_ENV的错，最后用 cross-env 来解决的。
+在 Windows 上运行`npm run build`的时候会报NODE_ENV的错，最后用 cross-env 来解决的。
 
 ```
   // 坑

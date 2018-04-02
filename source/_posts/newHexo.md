@@ -9,6 +9,7 @@ top: 100
 <!--more-->
 ---
 hexo出自台湾大学生tommy351之手，是一个基于Node.js的静态博客程序，其编译上百篇文字只需要几秒。hexo生成的静态网页可以直接放到GitHub Pages，BAE，SAE等平台上。先看看tommy是如何吐槽Octopress的 →＿→ Hexo颯爽登場。
+
 >- 如果你对默认配置满意，只需几个命令便可秒搭一个hexo。
 >- 如果你跟我一样喜欢折腾下，30分钟也足够个性化。
 >- 如果你过于喜欢折腾，可以折腾个把星期，尽情的玩。
@@ -16,9 +17,11 @@ hexo出自台湾大学生tommy351之手，是一个基于Node.js的静态博客�
 搭建过程你或许觉得有那么点小繁琐，但一旦搭建完成，写文章是极简单，极舒服的。
 只需要几个简单命令，你就可以完成一切。
 
+```
 	hexo n #写文章
 	hexo g #生成
 	hexo d #部署 # 可与hexo g合并为 hexo d -g
+```
 
 下面逐步介绍，进入正题。
 
@@ -46,22 +49,30 @@ Git的客户端很多，我用的是[msysgit](http://code.google.com/p/msysgit)�
 
 首先设置你的用户名密码(邮箱和用户名改你自己的，下同)：
 
-	git config --global user.email "bu.ru@qq.com"
-	git config --global user.name "bruce-sha"
+```
+git config --global user.email "bu.ru@qq.com"
+git config --global user.name "bruce-sha"
+```
+
 生成密钥：
 
-	ssh-keygen -t rsa -C "bu.ru@qq.com"
+```
+ssh-keygen -t rsa -C "bu.ru@qq.com"
+```
+
 输入文件路径：
 
-	H:\hexo\blog>ssh-keygen -t rsa -C "bu.ru@qq.com"
-	Generating public/private rsa key pair.
-	Enter file in which to save the key (//.ssh/id_rsa): H:\git\myssh\ssh
-	Enter passphrase (empty for no passphrase):
-	Enter same passphrase again:
-	Your identification has been saved in H:\git\myssh\ssh.
-	Your public key has been saved in H:\git\myssh\ssh.pub.
-	The key fingerprint is:
-	b0:0c:2e:67:33:ab:c1:50:10:40:0a:ba:c1:80:59:22 bu.ru@qq.com	
+```
+H:\hexo\blog>ssh-keygen -t rsa -C "bu.ru@qq.com"
+Generating public/private rsa key pair.
+Enter file in which to save the key (//.ssh/id_rsa): H:\git\myssh\ssh
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in H:\git\myssh\ssh.
+Your public key has been saved in H:\git\myssh\ssh.pub.
+The key fingerprint is:
+b0:0c:2e:67:33:ab:c1:50:10:40:0a:ba:c1:80:59:22 bu.ru@qq.com
+```
 
 > *有个bug，文件路径中的盘符H必须大写，否则会报错。*
 
@@ -72,7 +83,9 @@ Git的客户端很多，我用的是[msysgit](http://code.google.com/p/msysgit)�
  ![GitHub Mark](http://7xkj1z.com1.z0.glb.clouddn.com/add-ssh-keys.jpg "GitHub Mark")
  最后可以验证一下：
 
+```
 	ssh -T git@github.com
+```
 
 若有问题，请重新设置。常见错误请参考：
 [GitHub Help - Generating SSH Keys](http://help.github.com/articles/generating-ssh-keys)
@@ -80,110 +93,124 @@ Git的客户端很多，我用的是[msysgit](http://code.google.com/p/msysgit)�
 **安装**
 ===
 Node和Git都安装好后，可执行如下命令安装hexo：
-
+```
 	npm install -g hexo
+```
 **初始化**
 ===
 然后，执行init命令初始化hexo到你指定的目录：
-
+```
 	hexo init <folder>
+```
 >也可以cd到目标目录，执行hexo init。
 
 好啦，至此，全部安装工作已经完成！
 **生成静态页面**
 ===
 cd 到你的init目录，执行如下命令，生成静态页面至hexo\public\目录。
-
+```
 	hexo generate
+```
 > - *命令必须在init目录下执行，否则不成功，但是也不报错。*
 - *当你修改文章Tag或内容，不能正确重新生成内容，可以删除hexo\db.json后重试，还不行就到public目录删除对应的文件，重新生成。*
 
 **本地启动**
 ===
 执行如下命令，启动本地服务，进行文章预览调试。
-
+```
 	hexo server
-浏览器输入 http://localhost:4000 就可以看到效果。
+```
+浏览器输入 `http://localhost:4000` 就可以看到效果。
 >请使用高级浏览器，否则可能…你懂的！
 
 **写文章**
 ===
 执行new命令，生成指定名称的文章至hexo\source\_posts\postName.md。
-
+```
 	hexo new [layout] "postName" #新建文章
+```
 其中layout是可选参数，默认值为post。有哪些layout呢，请到scaffolds目录下查看，这些文件名称就是layout名称。当然你可以添加自己的layout，方法就是添加一个文件即可，同时你也可以编辑现有的layout，比如post的layout默认是hexo\scaffolds\post.md
-
+```
 	title: { { title } }
 	date: { { date } }
 	tags:
 	---
+```
 >请注意，大括号与大括号之间我多加了个空格，否则会被转义，不能正常显示。
 
 我想添加categories，以免每次手工输入，只需要修改这个文件添加一行，如下:
-
+```
 	title: { { title } }
 	date: { { date } }
-	categories: 
-	tags: 
+	categories:
+	tags:
 	---
+```
 postName是md文件的名字，同时也出现在你文章的URL中，postName如果包含空格，必须用”将其包围，postName可以为中文。
 >注意，所有文件：后面都必须有个空格，不然会报错。
 
 看一下刚才生成的文件hexo\source\_posts\postName.md，内容如下：
 
+```
 	title: postName #文章页面上的显示名称，可以任意修改，不会出现在URL中
 	date: 2013-12-02 15:30:16 #文章生成时间，一般不改，当然也可以任意修改
 	categories: #文章分类目录，可以为空，注意:后面有个空格
 	tags: #文章标签，可空，多标签请用格式[tag1,tag2,tag3]，注意:后面有个空格
 	---
 	这里开始使用markdown格式输入你的正文。
-
+```
 接下来，你就可以用喜爱的编辑器尽情书写你的文章。关于markdown语法，可以参考我的文章[Markdown简明语法]()。
 **fancybox**
 可能有人对这个Reading页面中图片的fancybox效果感兴趣，这个是怎么做的呢。
 很简单，只需要在你的文章*.md文件的头上添加photos项即可，然后一行行添加你要展示的照片：
 
-	layout: photo
-	title: 我的阅历
-	date: 2085-01-16 07:33:44
-	tags: [hexo]
-	photos:
-	- http://bruce.u.qiniudn.com/2013/11/27/reading/photos-0.jpg
-	- http://bruce.u.qiniudn.com/2013/11/27/reading/photos-1.jpg
+```yml
+layout: photo
+title: 我的阅历
+date: 2085-01-16 07:33:44
+tags: [hexo]
+photos:
+- http://bruce.u.qiniudn.com/2013/11/27/reading/photos-0.jpg
+- http://bruce.u.qiniudn.com/2013/11/27/reading/photos-1.jpg
+```
 >经过测试，文件头上的layout: photo可以省略。
 
 不想每次都手动添加怎么办？同样的，打开您的hexo\scaffolds\photo.md
 
-	layout: { { layout } }
-	title: { { title } }
-	date: { { date } }
-	tags: 
-	photos: 
-	- 
-	---
+```
+layout: { { layout } }
+title: { { title } }
+date: { { date } }
+tags:
+photos:
+-
+---
+```
 
 然后每次可以执行带layout的new命令生成照片文章：
-
+```
 	hexo new photo "photoPostName" #新建照片文章
-
+```
 **description**
 markdown文件头中也可以添加description，以覆盖全局配置文件中的description内容，请参考下文_config.yml的介绍。
-
+```
 	title: hexo你的博客
 	date: 2013-11-22 17:11:54
 	categories: default
 	tags: [hexo]
 	description: 你对本页的描述
 	---
-
->hexo默认会处理全部markdown和html文件，如果不想让hexo处理你的文件，可以在文件头中加入layout: false。
+```
+>hexo默认会处理全部markdown和html文件，如果不想让hexo处理你的文件，可以在文件头中加入`layout: false`。
 
 **文章摘要:**
 在需要显示摘要的地方添加如下代码即可：
 
+```
 	以上是摘要
 	<!--more-->
 	以下是余下全文
+```
 
 more以上内容即是文章摘要，在主页显示，more以下内容点击『> Read More』链接打开全文才显示。
 >hexo中所有文件的编码格式均是UTF-8。
@@ -195,64 +222,72 @@ more以上内容即是文章摘要，在主页显示，more以下内容点击『
 
 安装主题的方法就是一句git命令：
 
+```
 	git clone https://github.com/heroicyang/hexo-theme-modernist.git themes/modernist
+```
 >目录是否是modernist无所谓，只要与_config.yml文件一致即可。
 
 安装完成后，打开hexo\_config.yml，修改主题为modernist
-
+```yml
 	theme: modernist
+```
 打开hexo\themes\modernist目录，编辑主题配置文件_config.yml：
+```yml
+menu: #配置页头显示哪些菜单
+#  Home: /
+  Archives: /archives
+  Reading: /reading
+  About: /about
+#  Guestbook: /about
 
-	menu: #配置页头显示哪些菜单
-	#  Home: /
-	  Archives: /archives
-	  Reading: /reading
-	  About: /about
-	#  Guestbook: /about
+excerpt_link: Read More #摘要链接文字
+archive_yearly: false #按年存档
 
-	excerpt_link: Read More #摘要链接文字
-	archive_yearly: false #按年存档
+widgets: #配置页脚显示哪些小挂件
+  - category
+#  - tag
+  - tagcloud
+  - recent_posts
+#  - blogroll
 
-	widgets: #配置页脚显示哪些小挂件
-	  - category
-	#  - tag
-	  - tagcloud
-	  - recent_posts
-	#  - blogroll
+blogrolls: #友情链接
+  - bruce sha's duapp wordpress: http://ibruce.duapp.com
+  - bruce sha's javaeye: http://buru.iteye.com
+  - bruce sha's oschina blog: http://my.oschina.net/buru
+  - bruce sha's baidu space: http://hi.baidu.com/iburu
 
-	blogrolls: #友情链接
-	  - bruce sha's duapp wordpress: http://ibruce.duapp.com
-	  - bruce sha's javaeye: http://buru.iteye.com
-	  - bruce sha's oschina blog: http://my.oschina.net/buru
-	  - bruce sha's baidu space: http://hi.baidu.com/iburu
+fancybox: true #是否开启fancybox效果
 
-	fancybox: true #是否开启fancybox效果
+duoshuo_shortname: buru #多说账号
 
-	duoshuo_shortname: buru #多说账号
-
-	google_analytics:
-	rss:
-
+google_analytics:
+rss:
+```
 更新主题
-
+```
 	cd themes/modernist
 	git pull
+```
 **评论框**
 ===
 静态博客要使用第三方评论系统，hexo默认集成的是Disqus，因为你懂的，所以国内的话还是建议用多说。
 直接用你的微博/豆瓣/人人/百度/开心网帐号登录多说，做一下基本设置。如果使用modernist主题，在modernist_config.yml中配置duoshuo_shortname为多说的基本设置->域名中的shortname即可。你也可以在多说后台自定义一下多说评论框的格式，比如评论框的位置，对于css设置，可以参考这里，我是在HeroicYang的基础上修改的。
 
-如果你是有的其他第三方评论系统，将通用代码粘贴到hexo\themes\modernist\layout\_partial\comment.ejs里面，如下：
-
+如果你是有的其他第三方评论系统，将通用代码粘贴到
+ `hexo\themes\modernist\layout\_partial\comment.ejs`
+ 里面，如下：
+```html
 	<% if (config.disqus_shortname && page.comments){ %>
 	<section id="comment">
 	  #你的通用代码
 	<% } %>
+```
 **自定义页面**
 ===
 执行new page命令
-
+```
 	hexo new page "about"
+```
 在hexo\source\下会生成about目录，里面有个index.md，直接编辑就可以了，然后在主题的_config.yml中将其配置显示出来。
 上述步骤，也可以手工生成，在hexo\source\下手工新建about和index.md也是完全等价的。
 
@@ -301,25 +336,23 @@ GoDaddy的NameServers有时会被墙，因此墙裂推荐国内的[DNSPod](http:
 **命令**
 ===
 **常用命令：**
-
+```
 	hexo new "postName" #新建文章
 	hexo new page "pageName" #新建页面
 	hexo generate #生成静态页面至public目录
 	hexo server #开启预览访问端口（默认端口4000，'ctrl + c'关闭server）
 	hexo deploy #将.deploy目录部署到GitHub
+```
 **常用复合命令：**
-
+```
 	hexo deploy -g
 	hexo server -g
+```
 **简写：**
-	
+```
 	hexo n == hexo new
 	hexo g == hexo generate
 	hexo s == hexo server
 	hexo d == hexo deploy
-
----
+```
 **至此，基本操作介绍完毕,如果有什么问题，欢迎评论问我，看到一定回复**
-===
-
----
