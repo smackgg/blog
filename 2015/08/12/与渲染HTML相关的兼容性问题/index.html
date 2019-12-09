@@ -1,4 +1,177 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="伪全栈"><meta name="baidu-site-verification" content="yKAzGITNoG"><title>与渲染HTML相关的兼容性问题 | Smackgg</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">与渲染HTML相关的兼容性问题</h1><a id="logo" href="/.">Smackgg</a><p class="description">你好，兄dei</p></div><div id="nav-menu"> <a class="current" href="/."><i class="fa fa-home">首页</i></a> <a href="/archives/"><i class="fa fa-archive">归档</i></a> <a href="/about/"><i class="fa fa-user">关于</i></a> <a href="/atom.xml"><i class="fa fa-rss">订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">与渲染HTML相关的兼容性问题</h1><div class="post-meta">Aug 12, 2015 <span>|</span> <span class="category"><a href="/categories/与渲染HTML相关的兼容性问题/">与渲染HTML相关的兼容性问题</a></span> <span>|</span><span class="leancloud_visitors" id="/2015/08/12/与渲染HTML相关的兼容性问题/" data-flag-title="与渲染HTML相关的兼容性问题"><span id="leancloud-visitors-count"></span> <span>阅读</span></span></div><a class="ds-thread-count" href="/2015/08/12/与渲染HTML相关的兼容性问题/#SOHUCS"><span id="changyan_count_unit" style="font-size:15px;color:#6E7173">0</span> <span>条评论</span></a><script src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js" async></script><div class="post-content"><p>内容如题<br><a id="more"></a></p><blockquote><ul><li>1、注释内容含中横线（-）在 Firefox 中可能会使中间内容丢失。<blockquote><p>解决办法：按标准推荐的方法写注释标签</p></blockquote></li></ul></blockquote><blockquote><ul><li>2、各浏览器对于字符编码别名支持的宽泛程度有差异，当指定了浏览器无法识别的字符编码别名时，浏览器会以确定编码的优先级顺序采用设置的更低优先级的字符编码，以此类推。<br>而 Chrome Safari Opera 中对字符编码别名有着比其他浏览器更宽泛的支持。<blockquote><p>解决办法：首先，对于动态页面必须确保 HTTP “Content-Type” 头字段的 “charset” 参数与页面自身编码相符，且务必在页面的 META 元素中也声明相符的字符编码信息。对于静态页面，必须保证页面中 META 元素声明中 “http-equiv” 为 “Content-Type” 对应的值中的 “charset” 的值与页面自身编码相符。<br>其次，在设置字符编码别名时，最好使用最通用的、各浏览器均可识别的编码别名。</p></blockquote></li></ul></blockquote><blockquote><ul><li>3、对于 URI 中非 ASCII 字符，并非所有浏览器都是按照 HTML 4.01 规范中的建议实现的，而且不同浏览器在处理不同形式的 URI 时，表现也有差异。<blockquote><p>解决办法：当 URI 中含有非 ASCII 字符时，不要依赖浏览器对 URI 的编码方式，以避免产生差异</p></blockquote></li></ul></blockquote><blockquote><ul><li>4、如果在 DTD 之前加入注释或其他内容，在某些浏览器中该 DTD 将无法被识别。<blockquote><p>解决办法：声明 DTD 时，确保 DTD 之前没有其他字符，即便有，也只能是空格符、换行符和制表符。如将 DTD 放在 HTML 文档的第一行。</p></blockquote></li></ul></blockquote><blockquote><ul><li>5、Chrome 和 Safari 中标签紧密相邻的行内元素在折行显示时存在错误。<blockquote><p>解决办法：避免出现紧密连接的内联元素标签，可以在每个标记之间加入空格或者换行符来避免这个问题。</p></blockquote></li></ul></blockquote><blockquote><ul><li>6、通过 META 元素可以控制页面定时跳转，对于 http-equiv 属性为 refresh 时对应的 content 属性的值中，跳转时间与跳转 URL 之间需要分隔符分开，如果使用非 ‘;’ 的分隔符时，在某些浏览器下将不能达到期望的效果。<blockquote><p>解决办法：</p><ul><li>参照 W3C 的建议，使用服务端进行页面跳转。</li><li>使用合法的，所有浏览器均支持的写法：</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li>7、IE6/7 及 IE8 混杂模式(Q) 会忽略同一行内 OBJECT、IFRAME 元素之后的空白符。<blockquote><p>解决办法：若不希望出现空格，可以将 IFRAME OBJECT 元素设置为块级元素。</p></blockquote></li></ul></blockquote><blockquote><ul><li>8、IE6 IE7 IE8(Q) 中当 OBJECT 元素之前的行内文本由 “&nbsp;” 构成，且 “&nbsp;” 宽度之和小于容器宽度时，OBJECT 元素不发生折行；而 “&nbsp;” 宽度之和超过容器时，OBJECT 元素会折行显示。而在 IE8(S) Opera 中，出现上述情况时，OBJECT 元素始终不会发生折行。<blockquote><p>解决办法：<br>合理的设置容器及 OBJECT 元素的宽度。若需要 OBJECT 元素不发生折行，则为容器设置 “white-space:nowrap” ；<br>若需要 OBJECT 元素折行，则在 OBJECT 元素之前加入明确的换行符 “<br>“ 。</p></blockquote></li></ul></blockquote><blockquote><ul><li>9、Chrome 和 Safari 中 BR 元素前的空白符不会被忽略，多余的空白符将被压缩为一个空白符并渲染到 BR 元素之前的行中。<blockquote><p>解决办法：删除 BR 元素之前多余的空白符。</p></blockquote></li></ul></blockquote><blockquote><ul><li>10、单元格的 colspan 属性在 IE 中可能影响 TABLE 元素的自动布局。<blockquote><p>解决办法：</p><ul><li>设置 TABLE 的 ‘table-layout’ 特性值为 fixed，使用固定布局的表格元素可避免此问题。</li><li>单元格所跨过的列的宽度都设置成 auto。</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li>11、在 Firefox 中，TABLE 元素 ‘width’ 属性的百分比值大于 100% 时，Firefox 会按 100% 处理；如果是 CSS 的 ‘width’ 特性，则不会这么处理。<blockquote><p>解决办法：给 TABLE 元素设置宽度的时候，不要使用 HTML 属性 ‘width’，请使用 CSS 特性 ‘width’。</p></blockquote></li></ul></blockquote><blockquote><ul><li>12、在 IE 中，不仅 TD 和 TH 元素，其他一些元素也拥有 noWrap 属性。<blockquote><p>解决办法：nowrap 属性是被废弃的属性，使用 CSS 规则 white-space:nowrap 代替这个属性。</p></blockquote></li></ul></blockquote><blockquote><ul><li>13、IE6 IE7 IE8(Q) 对 COL 和 COLGROUP 元素的属性及部分 CSS 特性支持较好，而IE8(S) Firefox Chrome Safari 不再支持 COL 及 COLGROUP 元素的部分属性及为其设定的 CSS 特性。<blockquote><p>解决办法：当使用 COLGROUP COL 时需注意各浏览器对属性及 CSS 样式的设置，避免造成兼容性问题。</p></blockquote></li></ul></blockquote><blockquote><ul><li>14、若表格设定了大于零的水平单元格间隙 (即 cellspacing 属性)，且其内单元格存在过度设定的 colspan 属性，也就是单元格横跨的列数的设定值多余实际存在的单元格的个数，这时各浏览器对表格的渲染效果存在较大差异。<blockquote><p>解决办法：在进行表格布局时，务必精准设定 colspan 属性的值</p></blockquote></li></ul></blockquote><blockquote><ul><li>15、BASE 元素出现在 BODY 中，且定义了 target 属性，各浏览器表现不一致。<blockquote><p>解决办法：不要在 HEAD 元素之外定义 BASE 元素，保证各浏览器兼容。</p></blockquote></li></ul></blockquote><blockquote><ul><li>16、通常情况下，IE 系列浏览器通过 ActiveX 插件使用 OBJECT 元素引入 Flash，而其他浏览器则是通过相应的 NPAPI 插件使用 EMBED 元素。这造成了各浏览器中插入 Flash 的方式的差异。<blockquote><p>解决办法：</p><ul><li>若不考虑 W3C 校验，可统一使用 EMBED 元素嵌入 Flash，这样可以避免因参数不统一导致的兼容性问题。</li><li>若需要考虑 W3C 校验（swfobject Markup Validation Service），则可使用第三种单独使用 OBJECT 与 PARAM 元素的方式。</li><li>若必须使用 OBJECT 嵌套 EMBED 元素这种混合方式，则要保证 Flash 文件 URL、为 Flash 传递的参数、宽度、高度、wmode 等参数保持统一。</li><li>可以使用开源的 SWFObject 引入 Flash。（请参见：swfobject）</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li>17、该问题将造成局部的布局混乱。<blockquote><p>解决办法：为了防止这种无 “src” 的 IMG 元素对页面产生布局影响，需要设置这种 IMG 的 ‘display’ 特性为 ‘none’。</p></blockquote></li></ul></blockquote><blockquote><ul><li>18、alt 属性在 IE6 IE7 IE8(Q) 下具有双重意义。在给 IMG、AREA、INPUT[type=image] 元素设置的 alt 属性值不但可以作为该元素的替代文字，在该元素没有指定 title 属性时，还可以作为提示信息（tooltip）被显示出来。<blockquote><p>解决办法：</p><ul><li>若用户需要显示提示框，则指定 title 属性；</li><li>若用户不需要显示提示框，则指定 title=””。</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li>19、PNG24 格式图片可以携带 Alpha 半透明通道，以便呈现从透明到不透明间过渡色彩效果，但是 IE6 不支持这种格式原有的透明特性。<blockquote><p>解决办法：</p></blockquote></li><li>使用 IE 专有滤镜 AlphaImageLoader Filter 来修复 IE6 透明通道问题</li><li>或者使用脚本批量处理方式：</li></ul></blockquote><pre><code>function fixpng24(){
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="伪全栈"><meta name="baidu-site-verification" content="yKAzGITNoG"><title>与渲染HTML相关的兼容性问题 | Smackgg</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/8.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">与渲染HTML相关的兼容性问题</h1><a id="logo" href="/.">Smackgg</a><p class="description">你好，兄dei</p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">与渲染HTML相关的兼容性问题</h1><div class="post-meta">Aug 12, 2015<span> | </span><span class="category"><a href="/categories/与渲染HTML相关的兼容性问题/">与渲染HTML相关的兼容性问题</a></span><span> | </span><span class="leancloud_visitors" id="/2015/08/12/与渲染HTML相关的兼容性问题/" data-flag-title="与渲染HTML相关的兼容性问题"><span id="leancloud-visitors-count"></span><span> 阅读</span></span></div><a class="ds-thread-count" href="/2015/08/12/与渲染HTML相关的兼容性问题/#SOHUCS"><span id="changyan_count_unit" style="font-size: 15px; color: #6E7173;">0</span><span> 条评论</span></a><script src="https://assets.changyan.sohu.com/upload/plugins/plugins.count.js" async></script><div class="post-content"><p>内容如题<br><a id="more"></a></p>
+<blockquote>
+<ul>
+<li>1、注释内容含中横线（-）在 Firefox 中可能会使中间内容丢失。<blockquote>
+<p>解决办法：按标准推荐的方法写注释标签</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>2、各浏览器对于字符编码别名支持的宽泛程度有差异，当指定了浏览器无法识别的字符编码别名时，浏览器会以确定编码的优先级顺序采用设置的更低优先级的字符编码，以此类推。<br>而 Chrome Safari Opera 中对字符编码别名有着比其他浏览器更宽泛的支持。<blockquote>
+<p>解决办法：首先，对于动态页面必须确保 HTTP “Content-Type” 头字段的 “charset” 参数与页面自身编码相符，且务必在页面的 META 元素中也声明相符的字符编码信息。对于静态页面，必须保证页面中 META 元素声明中 “http-equiv” 为 “Content-Type” 对应的值中的 “charset” 的值与页面自身编码相符。<br>其次，在设置字符编码别名时，最好使用最通用的、各浏览器均可识别的编码别名。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>3、对于 URI 中非 ASCII 字符，并非所有浏览器都是按照 HTML 4.01 规范中的建议实现的，而且不同浏览器在处理不同形式的 URI 时，表现也有差异。<blockquote>
+<p>解决办法：当 URI 中含有非 ASCII 字符时，不要依赖浏览器对 URI 的编码方式，以避免产生差异</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>4、如果在 DTD 之前加入注释或其他内容，在某些浏览器中该 DTD 将无法被识别。<blockquote>
+<p>解决办法：声明 DTD 时，确保 DTD 之前没有其他字符，即便有，也只能是空格符、换行符和制表符。如将 DTD 放在 HTML 文档的第一行。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>5、Chrome 和 Safari 中标签紧密相邻的行内元素在折行显示时存在错误。<blockquote>
+<p>解决办法：避免出现紧密连接的内联元素标签，可以在每个标记之间加入空格或者换行符来避免这个问题。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>6、通过 META 元素可以控制页面定时跳转，对于 http-equiv 属性为 refresh 时对应的 content 属性的值中，跳转时间与跳转 URL 之间需要分隔符分开，如果使用非 ‘;’ 的分隔符时，在某些浏览器下将不能达到期望的效果。<blockquote>
+<p>解决办法：</p>
+<ul>
+<li>参照 W3C 的建议，使用服务端进行页面跳转。</li>
+<li>使用合法的，所有浏览器均支持的写法：</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>7、IE6/7 及 IE8 混杂模式(Q) 会忽略同一行内 OBJECT、IFRAME 元素之后的空白符。<blockquote>
+<p>解决办法：若不希望出现空格，可以将 IFRAME OBJECT 元素设置为块级元素。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>8、IE6 IE7 IE8(Q) 中当 OBJECT 元素之前的行内文本由 “&nbsp;” 构成，且 “&nbsp;” 宽度之和小于容器宽度时，OBJECT 元素不发生折行；而 “&nbsp;” 宽度之和超过容器时，OBJECT 元素会折行显示。而在 IE8(S) Opera 中，出现上述情况时，OBJECT 元素始终不会发生折行。<blockquote>
+<p>解决办法：<br>合理的设置容器及 OBJECT 元素的宽度。若需要 OBJECT 元素不发生折行，则为容器设置 “white-space:nowrap” ；<br>若需要 OBJECT 元素折行，则在 OBJECT 元素之前加入明确的换行符 “<br>“ 。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>9、Chrome 和 Safari 中 BR 元素前的空白符不会被忽略，多余的空白符将被压缩为一个空白符并渲染到 BR 元素之前的行中。<blockquote>
+<p>解决办法：删除 BR 元素之前多余的空白符。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>10、单元格的 colspan 属性在 IE 中可能影响 TABLE 元素的自动布局。<blockquote>
+<p>解决办法：</p>
+<ul>
+<li>设置 TABLE 的 ‘table-layout’ 特性值为 fixed，使用固定布局的表格元素可避免此问题。</li>
+<li>单元格所跨过的列的宽度都设置成 auto。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>11、在 Firefox 中，TABLE 元素 ‘width’ 属性的百分比值大于 100% 时，Firefox 会按 100% 处理；如果是 CSS 的 ‘width’ 特性，则不会这么处理。<blockquote>
+<p>解决办法：给 TABLE 元素设置宽度的时候，不要使用 HTML 属性 ‘width’，请使用 CSS 特性 ‘width’。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>12、在 IE 中，不仅 TD 和 TH 元素，其他一些元素也拥有 noWrap 属性。<blockquote>
+<p>解决办法：nowrap 属性是被废弃的属性，使用 CSS 规则 white-space:nowrap 代替这个属性。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>13、IE6 IE7 IE8(Q) 对 COL 和 COLGROUP 元素的属性及部分 CSS 特性支持较好，而IE8(S) Firefox Chrome Safari 不再支持 COL 及 COLGROUP 元素的部分属性及为其设定的 CSS 特性。<blockquote>
+<p>解决办法：当使用 COLGROUP COL 时需注意各浏览器对属性及 CSS 样式的设置，避免造成兼容性问题。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>14、若表格设定了大于零的水平单元格间隙 (即 cellspacing 属性)，且其内单元格存在过度设定的 colspan 属性，也就是单元格横跨的列数的设定值多余实际存在的单元格的个数，这时各浏览器对表格的渲染效果存在较大差异。<blockquote>
+<p>解决办法：在进行表格布局时，务必精准设定 colspan 属性的值</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>15、BASE 元素出现在 BODY 中，且定义了 target 属性，各浏览器表现不一致。<blockquote>
+<p>解决办法：不要在 HEAD 元素之外定义 BASE 元素，保证各浏览器兼容。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>16、通常情况下，IE 系列浏览器通过 ActiveX 插件使用 OBJECT 元素引入 Flash，而其他浏览器则是通过相应的 NPAPI 插件使用 EMBED 元素。这造成了各浏览器中插入 Flash 的方式的差异。<blockquote>
+<p>解决办法：</p>
+<ul>
+<li>若不考虑 W3C 校验，可统一使用 EMBED 元素嵌入 Flash，这样可以避免因参数不统一导致的兼容性问题。</li>
+<li>若需要考虑 W3C 校验（swfobject Markup Validation Service），则可使用第三种单独使用 OBJECT 与 PARAM 元素的方式。</li>
+<li>若必须使用 OBJECT 嵌套 EMBED 元素这种混合方式，则要保证 Flash 文件 URL、为 Flash 传递的参数、宽度、高度、wmode 等参数保持统一。</li>
+<li>可以使用开源的 SWFObject 引入 Flash。（请参见：swfobject）</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>17、该问题将造成局部的布局混乱。<blockquote>
+<p>解决办法：为了防止这种无 “src” 的 IMG 元素对页面产生布局影响，需要设置这种 IMG 的 ‘display’ 特性为 ‘none’。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>18、alt 属性在 IE6 IE7 IE8(Q) 下具有双重意义。在给 IMG、AREA、INPUT[type=image] 元素设置的 alt 属性值不但可以作为该元素的替代文字，在该元素没有指定 title 属性时，还可以作为提示信息（tooltip）被显示出来。<blockquote>
+<p>解决办法：</p>
+<ul>
+<li>若用户需要显示提示框，则指定 title 属性；</li>
+<li>若用户不需要显示提示框，则指定 title=””。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>19、PNG24 格式图片可以携带 Alpha 半透明通道，以便呈现从透明到不透明间过渡色彩效果，但是 IE6 不支持这种格式原有的透明特性。<blockquote>
+<p>解决办法：</p>
+</blockquote>
+</li>
+<li>使用 IE 专有滤镜 AlphaImageLoader Filter 来修复 IE6 透明通道问题</li>
+<li>或者使用脚本批量处理方式：</li>
+</ul>
+</blockquote>
+<pre><code>function fixpng24(){
     var arVersion = navigator.appVersion.split(&quot;MSIE&quot;);
     var version = parseFloat(arVersion[1]);
     if ((version &gt;= 5.5) &amp;&amp; (document.body.filters)){
@@ -22,4 +195,65 @@
        }
     }
 }
-</code></pre><blockquote><ul><li>20、当给一个现有的 IMG 元素重设其 “src” 为其当前的 “src” 时，只有 IE6 会重现载入该图片，其他浏览器则不会。<blockquote><p>解决办法：如果需要重复设置相同的 src 值时，均触发 IMG 的 onload 事件，或者需要每次均从服务器端下载图片数据的时候，可以采用图片地址后加上随机数或当前时间戳参数的手段，避免内容被缓存。</p></blockquote></li></ul></blockquote><blockquote><ul><li>21、IE Chrome Safari 支持通过为 OBJECT 元素设置 classid 引入 Windows 下的 Media Player 或 Flash 插件。而 Windows 版的 Firefox 与 Opera 无法支持这种形式引入这些插件。<blockquote><p>解决办法：由于某些浏览器原生无法支持 OBJECT 元素使用 classid 属性引入 Media Player 插件，所以为保证最大的兼容性，应避免使用此方式在页面中播放媒体文件。<br>可以考虑使用 Flash，或者合理的利用 IE 对 Media Player 的支持及其其他浏览器对 HTML5 的新标签 “VIDEO” 与 “AUDIO” 的支持在不同浏览器中达到相类似的效果。</p></blockquote></li></ul></blockquote><blockquote><ul><li>22、Firefox Opera 中 OBJECT 元素的默认尺寸为不可视；而 IE 中，OBJECT 默认尺寸为 16 x 16 像素；在 Chrome 和 Safari 下的默认尺寸为 300 x 150 像素。<blockquote><p>解决办法：OBJECT 元素为替换元素，应为 OBJECT 元素设置一个明确的宽度和高度。</p></blockquote></li></ul></blockquote><blockquote><ul><li>23、IE Opera 中，IMG 元素通过其 usemap 属性可以与 MAP 元素的 id 属性及 name 属性关联，而 Firefox Chrome Safari 中仅限于 MAP 元素的 name 属性。<blockquote><p>解决办法：若需要 IMG 元素与 MAP 元素相关联，注意通过 IMG 元素的 usemap 属性关联的 MAP 元素的 name 属性的值。</p></blockquote></li></ul></blockquote><blockquote><ul><li>24、MAP 元素会影响指向 MAP 的元素，其父元素 A 元素的默认链接行为。<br>IE6 IE7 IE8 中，产生自 MAP 元素的事件冒泡路径，不依赖 MAP 本身所处的元素嵌套规则，他会执行到引向 MAP 的元素嵌套结构中。<blockquote><p>解决办法：</p><ul><li>注意 MAP 标记与其他标记的嵌套关系，IE6 IE7 IE8 中的 MAP 冒泡机制是根据指向 MAP 标记的标记位置决定的。如果期望所有浏览器冒泡路径基本一致，可以将 MAP 标记放在引用 MAP 的标记的兄弟级别。</li><li>注意 A 标记的默认导航行为触发限制，即使标签嵌套一致，点击事件冒泡路颈 A 标记，也不会在 IE6 IE7 IE8 Firefox 中触发浏览器默认行为产生导航。可以利用 A 标记也会执行点击事件冒泡的特性，使用 A 标记的 “click” 事件代替 “href” 属性执行页面跳转工作。</li></ul></blockquote></li></ul></blockquote><blockquote><ul><li>25、CENTER 元素在 IE6 IE7 IE8(Q) 中会使自身也居中对齐，除了上述浏览器，在 IE(S) 与 Opera(S) 中 CENTER 元素还会使其内表格中的单元格内文本居中对齐。<blockquote><p>解决办法：避免使用 CENTER 标签，使用 CSS 的 ‘text-align’ 特性来代替。</p></blockquote></li></ul></blockquote><blockquote><ul><li>26、Firefox Chrome Safari 会将 DIV H1~H6 P 元素的 align=”middle” 解释为 align=”center”，从而使这些元素能够居中对齐。<br>Firefox 混杂模式会将 TABLE 元素 align=”middle” 解释为 align=”center”，使 TABLE 元素居中对齐。<br>IE6 IE7 Chrome Safari Opera 及 IE8 Firefox 的混杂模式下，均将 TD TH 元素的 align=”middle” 理解为 align=”center”。<blockquote><p>解决办法：align=”middle” 仅在 IMG、OBJECT、APPLET 元素上的 align 属性中是合法值，对于其他元素的 align 属性均为非法。各浏览器在上述三个元素之外的元素上遇到 align=”middle” 均按照自己的理解方式解释。同时除单元格元素的 align 属性之外，其他的 align 属性均被 W3C 官方废弃（Deprecated.），所以应避免使用此属性。</p></blockquote></li></ul></blockquote></div><iframe src="/donate/?AliPayQR=/img/AliPayQR.jpg&amp;WeChatQR=/img/WeChatQR.jpg&amp;GitHub=https://github.com/smackgg&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden;overflow-y:hidden;border:0xp none #fff;min-height:240px;width:100%" frameborder="0" scrolling="no"></iframe><div class="tags"><a href="/tags/兼容性/">兼容性</a></div><div class="post-nav"><a class="pre" href="/2015/08/14/与渲染混合类型相关的兼容性问题/">与渲染混合类型相关的兼容性问题</a><a class="next" href="/2015/08/08/浅谈BFC实际应用/">浅谈BFC的实际应用</a></div><div id="SOHUCS" sid="1439374514000"></div><script>!function(){var t="cytwmWeN3",e="54ae93d9b5daa95aace5bfdf4e84dca1",n=window.innerWidth||document.documentElement.clientWidth;if(n<960)window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+t+"&conf="+e+'"><\/script>');else{var a=function(t,e){var n=document.getElementsByTagName("head")[0]||document.head||document.documentElement,a=document.createElement("script");a.setAttribute("type","text/javascript"),a.setAttribute("charset","UTF-8"),a.setAttribute("src",t),"function"==typeof e&&(window.attachEvent?a.onreadystatechange=function(){var t=a.readyState;"loaded"!==t&&"complete"!==t||(a.onreadystatechange=null,e())}:a.onload=e),n.appendChild(a)};a("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:t,conf:e})})}}()</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://blog.smackgg.cn"></form></div><div class="widget"><div class="widget-title"> <i class="fa fa-folder-o">分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Electron/">Electron</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/与-CSS-相关的兼容性问题/">与 CSS 相关的兼容性问题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/与渲染HTML相关的兼容性问题/">与渲染HTML相关的兼容性问题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/与渲染混合类型相关的兼容性问题/">与渲染混合类型相关的兼容性问题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/与脚本相关的兼容性问题/">与脚本相关的兼容性问题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/作用域链和标识符详细解析/">作用域链和标识符详细解析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/关于主题/">关于主题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/浅谈BFC实际应用/">浅谈BFC实际应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-1/">高性能JavaScript-1</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-10/">高性能JavaScript-10</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-2/">高性能JavaScript-2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-3/">高性能JavaScript-3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-4/">高性能JavaScript-4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-5/">高性能JavaScript-5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-6/">高性能JavaScript-6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-7/">高性能JavaScript-7</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-8/">高性能JavaScript-8</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-9/">高性能JavaScript-9</a></li></ul></div><div class="widget"><div class="widget-title"> <i class="fa fa-star-o">标签</i></div><div class="tagcloud"><a href="/tags/Electron/" style="font-size:15px">Electron</a> <a href="/tags/hexo/" style="font-size:15px">hexo</a> <a href="/tags/兼容性/" style="font-size:15px">兼容性</a> <a href="/tags/高性能JavaScript学习笔记/" style="font-size:15px">高性能JavaScript学习笔记</a> <a href="/tags/没事瞎扯/" style="font-size:15px">没事瞎扯</a> <a href="/tags/CSS/" style="font-size:15px">CSS</a> <a href="/tags/微信小程序/" style="font-size:15px">微信小程序</a></div></div><div class="widget"><div class="widget-title"> <i class="fa fa-file-o">最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/12/09/最近很火的倒放挑战(含前后端源码)/">最近很火的倒放挑战(含前后端源码)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/electron-daying/">使用 Electron 快速开发桌面应用(附实例，源码)。</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/31/hexo主题添加阅读数/">为hexo-theme-smackdown主题添加阅读数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/12/写代码强行装逼/">写代码强行装逼</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/21/与 CSS 相关的兼容性问题/">与 CSS 相关的兼容性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/19/与脚本相关的兼容性问题/">与脚本相关的兼容性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/15/与服务端通信相关的兼容性问题/">与脚本相关的兼容性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/14/与渲染混合类型相关的兼容性问题/">与渲染混合类型相关的兼容性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/12/与渲染HTML相关的兼容性问题/">与渲染HTML相关的兼容性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/08/浅谈BFC实际应用/">浅谈BFC的实际应用</a></li></ul></div><div class="widget"><div class="widget-title"> <i class="fa fa-external-link">友情链接</i></div><ul></ul><a href="https://github.com/smackgg/hexo-theme-smackdown" title="hexo-theme-smackdown" target="_blank">hexo-theme-smackdown</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer"><p>Copyright © 2019 京ICP备17049908号-1</p><a href="/." rel="nofollow">Smackgg.</a> Powered by <a rel="nofollow" target="_blank" href="https://hexo.io">Hexo.</a> <a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo">Theme</a> by <a rel="nofollow" target="_blank" href="https://github.com/pagecho">Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script><script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script><script>AV.initialize("K1qAIJa0JgKeGUnrlq0G526F-gzGzoHsz","n4XwRe0iBOxWpBaYJ7HNWPA3")</script><script type="text/javascript" src="/js/Counter.js?v=0.0.0" async></script></div></body></html>
+</code></pre><blockquote>
+<ul>
+<li>20、当给一个现有的 IMG 元素重设其 “src” 为其当前的 “src” 时，只有 IE6 会重现载入该图片，其他浏览器则不会。<blockquote>
+<p>解决办法：如果需要重复设置相同的 src 值时，均触发 IMG 的 onload 事件，或者需要每次均从服务器端下载图片数据的时候，可以采用图片地址后加上随机数或当前时间戳参数的手段，避免内容被缓存。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>21、IE Chrome Safari 支持通过为 OBJECT 元素设置 classid 引入 Windows 下的 Media Player 或 Flash 插件。而 Windows 版的 Firefox 与 Opera 无法支持这种形式引入这些插件。<blockquote>
+<p>解决办法：由于某些浏览器原生无法支持 OBJECT 元素使用 classid 属性引入 Media Player 插件，所以为保证最大的兼容性，应避免使用此方式在页面中播放媒体文件。<br>可以考虑使用 Flash，或者合理的利用 IE 对 Media Player 的支持及其其他浏览器对 HTML5 的新标签 “VIDEO” 与 “AUDIO” 的支持在不同浏览器中达到相类似的效果。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>22、Firefox Opera 中 OBJECT 元素的默认尺寸为不可视；而 IE 中，OBJECT 默认尺寸为 16 x 16 像素；在 Chrome 和 Safari 下的默认尺寸为 300 x 150 像素。<blockquote>
+<p>解决办法：OBJECT 元素为替换元素，应为 OBJECT 元素设置一个明确的宽度和高度。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>23、IE Opera 中，IMG 元素通过其 usemap 属性可以与 MAP 元素的 id 属性及 name 属性关联，而 Firefox Chrome Safari 中仅限于 MAP 元素的 name 属性。<blockquote>
+<p>解决办法：若需要 IMG 元素与 MAP 元素相关联，注意通过 IMG 元素的 usemap 属性关联的 MAP 元素的 name 属性的值。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>24、MAP 元素会影响指向 MAP 的元素，其父元素 A 元素的默认链接行为。<br>IE6 IE7 IE8 中，产生自 MAP 元素的事件冒泡路径，不依赖 MAP 本身所处的元素嵌套规则，他会执行到引向 MAP 的元素嵌套结构中。<blockquote>
+<p>解决办法：</p>
+<ul>
+<li>注意 MAP 标记与其他标记的嵌套关系，IE6 IE7 IE8 中的 MAP 冒泡机制是根据指向 MAP 标记的标记位置决定的。如果期望所有浏览器冒泡路径基本一致，可以将 MAP 标记放在引用 MAP 的标记的兄弟级别。</li>
+<li>注意 A 标记的默认导航行为触发限制，即使标签嵌套一致，点击事件冒泡路颈 A 标记，也不会在 IE6 IE7 IE8 Firefox 中触发浏览器默认行为产生导航。可以利用 A 标记也会执行点击事件冒泡的特性，使用 A 标记的 “click” 事件代替 “href” 属性执行页面跳转工作。</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>25、CENTER 元素在 IE6 IE7 IE8(Q) 中会使自身也居中对齐，除了上述浏览器，在 IE(S) 与 Opera(S) 中 CENTER 元素还会使其内表格中的单元格内文本居中对齐。<blockquote>
+<p>解决办法：避免使用 CENTER 标签，使用 CSS 的 ‘text-align’ 特性来代替。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>26、Firefox Chrome Safari 会将 DIV H1~H6 P 元素的 align=”middle” 解释为 align=”center”，从而使这些元素能够居中对齐。<br>Firefox 混杂模式会将 TABLE 元素 align=”middle” 解释为 align=”center”，使 TABLE 元素居中对齐。<br>IE6 IE7 Chrome Safari Opera 及 IE8 Firefox 的混杂模式下，均将 TD TH 元素的 align=”middle” 理解为 align=”center”。<blockquote>
+<p>解决办法：align=”middle” 仅在 IMG、OBJECT、APPLET 元素上的 align 属性中是合法值，对于其他元素的 align 属性均为非法。各浏览器在上述三个元素之外的元素上遇到 align=”middle” 均按照自己的理解方式解释。同时除单元格元素的 align 属性之外，其他的 align 属性均被 W3C 官方废弃（Deprecated.），所以应避免使用此属性。</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
+</div><iframe src="/donate/?AliPayQR=/img/AliPayQR.jpg&amp;WeChatQR=/img/WeChatQR.jpg&amp;GitHub=https://github.com/smackgg&amp;BTCQR=null&amp;BTCKEY=null&amp;PayPal=null" style="overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;" frameborder="0" scrolling="no"></iframe><div class="tags"><a href="/tags/兼容性/">兼容性</a></div><div class="post-nav"><a class="pre" href="/2015/08/14/与渲染混合类型相关的兼容性问题/">与渲染混合类型相关的兼容性问题</a><a class="next" href="/2015/08/08/浅谈BFC实际应用/">浅谈BFC的实际应用</a></div><div id="SOHUCS" sid="1439374514000"></div><script>(function(){var appid='cytwmWeN3';var conf='54ae93d9b5daa95aace5bfdf4e84dca1';var width=window.innerWidth||document.documentElement.clientWidth;if(width<960){window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id='+appid+'&conf='+conf+'"><\/script>')}else{var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})})}})()
+</script></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://blog.smackgg.cn"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Electron/">Electron</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/与-CSS-相关的兼容性问题/">与 CSS 相关的兼容性问题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/与渲染HTML相关的兼容性问题/">与渲染HTML相关的兼容性问题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/与渲染混合类型相关的兼容性问题/">与渲染混合类型相关的兼容性问题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/与脚本相关的兼容性问题/">与脚本相关的兼容性问题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/作用域链和标识符详细解析/">作用域链和标识符详细解析</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/关于主题/">关于主题</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/浅谈BFC实际应用/">浅谈BFC实际应用</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-1/">高性能JavaScript-1</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-10/">高性能JavaScript-10</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-2/">高性能JavaScript-2</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-3/">高性能JavaScript-3</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-4/">高性能JavaScript-4</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-5/">高性能JavaScript-5</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-6/">高性能JavaScript-6</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-7/">高性能JavaScript-7</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-8/">高性能JavaScript-8</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/高性能JavaScript-9/">高性能JavaScript-9</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/hexo/" style="font-size: 15px;">hexo</a> <a href="/tags/兼容性/" style="font-size: 15px;">兼容性</a> <a href="/tags/Electron/" style="font-size: 15px;">Electron</a> <a href="/tags/高性能JavaScript学习笔记/" style="font-size: 15px;">高性能JavaScript学习笔记</a> <a href="/tags/没事瞎扯/" style="font-size: 15px;">没事瞎扯</a> <a href="/tags/CSS/" style="font-size: 15px;">CSS</a> <a href="/tags/微信小程序/" style="font-size: 15px;">微信小程序</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/12/09/最近很火的倒放挑战(含前后端源码)/">最近很火的倒放挑战(含前后端源码)</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/03/08/electron-daying/">使用 Electron 快速开发桌面应用(附实例，源码)。</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/31/hexo主题添加阅读数/">为hexo-theme-smackdown主题添加阅读数</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/12/写代码强行装逼/">写代码强行装逼</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/21/与 CSS 相关的兼容性问题/">与 CSS 相关的兼容性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/19/与脚本相关的兼容性问题/">与脚本相关的兼容性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/15/与服务端通信相关的兼容性问题/">与脚本相关的兼容性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/14/与渲染混合类型相关的兼容性问题/">与渲染混合类型相关的兼容性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/12/与渲染HTML相关的兼容性问题/">与渲染HTML相关的兼容性问题</a></li><li class="post-list-item"><a class="post-list-link" href="/2015/08/08/浅谈BFC实际应用/">浅谈BFC的实际应用</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="https://github.com/smackgg/hexo-theme-smackdown" title="hexo-theme-smackdown" target="_blank">hexo-theme-smackdown</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer"><p>Copyright © 2019 京ICP备17049908号-1</p><a href="/." rel="nofollow">Smackgg.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.2.5/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script><script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script><script>AV.initialize('K1qAIJa0JgKeGUnrlq0G526F-gzGzoHsz', 'n4XwRe0iBOxWpBaYJ7HNWPA3');</script><script type="text/javascript" src="/js/Counter.js?v=0.0.0" async></script></div></body></html>
